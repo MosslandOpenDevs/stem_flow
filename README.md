@@ -347,6 +347,7 @@ Copy `.env.example` and adjust:
 | `STEMFLOW_ALLOWED_ORIGINS` | localhost origins | CORS allowlist |
 | `STEMFLOW_MODEL_DIR` | `<project>/models` | Model directory |
 | `STEMFLOW_OFFLINE` | `true` | Block outbound requests from the separator |
+| `STEMFLOW_NODE` | — | Override Node for the web scripts when PATH's is older than 22.13 |
 | `STEMFLOW_SEPARATOR_EXE` | v4 env path | `audio-separator` executable |
 | `STEMFLOW_FFMPEG_EXE` | v4 env path | FFmpeg executable |
 
@@ -544,7 +545,7 @@ server/tests/      Python store, retention, settings, and invariant tests
 
 ```powershell
 npm test                                                        # 4 tests
-.\.venv\Scripts\python.exe -m unittest discover -s server/tests -t .   # 9 tests
+.\.venv\Scripts\python.exe -m unittest discover -s server/tests -t .   # 28 tests
 ```
 
 The Python suite covers the job store, mix rendering, retention semantics,
@@ -893,6 +894,7 @@ StemFlow가 이미 찾아보는 위치에 에셋이 있다면 해당 줄은 비�
 | `STEMFLOW_ALLOWED_ORIGINS` | localhost 주소들 | CORS 허용 목록 |
 | `STEMFLOW_MODEL_DIR` | `<project>/models` | 모델 디렉터리 |
 | `STEMFLOW_OFFLINE` | `true` | 분리기의 외부 요청 차단 |
+| `STEMFLOW_NODE` | — | PATH의 Node가 22.13 미만일 때 웹 스크립트용 Node 지정 |
 | `STEMFLOW_SEPARATOR_EXE` | v4 환경 경로 | `audio-separator` 실행 파일 |
 | `STEMFLOW_FFMPEG_EXE` | v4 환경 경로 | FFmpeg 실행 파일 |
 
@@ -1081,7 +1083,7 @@ server/tests/      Python 저장소·보관 기간·설정·불변식 테스트
 
 ```powershell
 npm test                                                        # 4개
-.\.venv\Scripts\python.exe -m unittest discover -s server/tests -t .   # 9개
+.\.venv\Scripts\python.exe -m unittest discover -s server/tests -t .   # 28개
 ```
 
 Python 스위트는 작업 저장소, 믹스 렌더링, 보관 기간 동작, 추론 노브 해석을
