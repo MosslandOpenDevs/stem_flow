@@ -20,10 +20,6 @@ import numpy as np
 import soundfile as sf
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-#: audio-separator's own default model location. Everything else is either
-#: vendored into the project or configured through .env — no machine-specific
-#: paths are baked in.
-DEFAULT_MODEL_DIR = Path(r"C:\tmp\audio-separator-models")
 
 VOCAL_MODEL = "model_bs_roformer_ep_317_sdr_12.9755.ckpt"
 SIX_STEM_MODEL = "BS-Roformer-SW.ckpt"
@@ -53,7 +49,9 @@ def model_directory() -> Path:
     audio-separator defaults to the POSIX-looking '/tmp/audio-separator-models/',
     which on Windows resolves against the *current drive* — starting the API from
     another drive would silently look in the wrong place and try to download.
-    Passing an absolute path removes that dependency.
+    Resolving here and passing --model_file_dir explicitly removes that
+    dependency, and every candidate is derived from the project directory rather
+    than a hardcoded absolute path.
     """
     configured = os.getenv("STEMFLOW_MODEL_DIR")
     if configured:
@@ -67,7 +65,9 @@ def model_directory() -> Path:
     for candidate in candidates:
         if candidate.is_dir():
             return candidate
-    return DEFAULT_MODEL_DIR
+    # Nothing set up yet: name the documented location so the "missing assets"
+    # error points somewhere useful. No absolute path is baked into the project.
+    return candidates[0]
 
 
 def required_model_files() -> tuple[str, ...]:

@@ -264,7 +264,7 @@ then confirms CUDA is available. Nothing else runs until it passes.
 
 - Windows, an **NVIDIA GPU with CUDA**, and a CUDA `audio-separator` environment
   (see [Prerequisites](#prerequisites))
-- The v4 model assets under `C:\tmp\audio-separator-models` — both checkpoints,
+- The v4 model assets in `models/` — both checkpoints,
   both `.yaml` configs, and `download_checks.json` (see [Models](#models) for how
   to fetch them; they are not in this repository)
 - Node 22.13+ and Python 3.12
@@ -345,7 +345,7 @@ Copy `.env.example` and adjust:
 | `STEMFLOW_MDXC_OVERLAP` | `8` | Separator chunk overlap |
 | `STEMFLOW_USE_AUTOCAST` | `true` | Mixed-precision inference |
 | `STEMFLOW_ALLOWED_ORIGINS` | localhost origins | CORS allowlist |
-| `STEMFLOW_MODEL_DIR` | `C:\tmp\audio-separator-models` | Absolute model directory |
+| `STEMFLOW_MODEL_DIR` | `<project>/models` | Model directory |
 | `STEMFLOW_OFFLINE` | `true` | Block outbound requests from the separator |
 | `STEMFLOW_SEPARATOR_EXE` | v4 env path | `audio-separator` executable |
 | `STEMFLOW_FFMPEG_EXE` | v4 env path | FFmpeg executable |
@@ -377,7 +377,7 @@ an explicit local error instead of stalling on the separator's 300-second
 download timeout:
 
 ```text
-Missing 1 model asset(s) in C:\tmp\audio-separator-models: BS-Roformer-SW.yaml.
+Missing 1 model asset(s) in C:\path\to\StemFlow\models: BS-Roformer-SW.yaml.
 Separation needs these locally; set STEMFLOW_MODEL_DIR if they live elsewhere.
 ```
 
@@ -396,7 +396,7 @@ time) and the hosted demo site. Neither is involved in local separation.
 ### Required local assets
 
 ```text
-C:\tmp\audio-separator-models\
+StemFlow/models/
 ├── model_bs_roformer_ep_317_sdr_12.9755.ckpt   # 639 MB
 ├── model_bs_roformer_ep_317_sdr_12.9755.yaml   # inference params
 ├── BS-Roformer-SW.ckpt                         # 699 MB
@@ -428,7 +428,7 @@ load-bearing as the weights:
 
 ```powershell
 $sep = "C:\path\to\.sepenv\Scripts\audio-separator.exe"
-$dir = "C:\tmp\audio-separator-models"
+$dir = "$PWD\models"
 # audio-separator probes ffmpeg on startup, so it has to be on PATH here.
 $env:PATH = "C:\path\to\ffmpeg\bin;$env:PATH"
 & $sep --download_model_only --model_filename model_bs_roformer_ep_317_sdr_12.9755.ckpt --model_file_dir $dir
@@ -810,7 +810,7 @@ StemFlow가 이미 찾아보는 위치에 에셋이 있다면 해당 줄은 비�
 
 - Windows, **CUDA 지원 NVIDIA GPU**, 그리고 CUDA `audio-separator` 환경
   ([사전 준비](#사전-준비) 참고)
-- `C:\tmp\audio-separator-models` 아래 v4 모델 에셋 — 체크포인트 2개, `.yaml`
+- `models/`에 v4 모델 에셋 — 체크포인트 2개, `.yaml`
   설정 2개, `download_checks.json` (받는 방법은 [모델](#모델) 참고. 저장소에
   포함되어 있지 않습니다)
 - Node 22.13 이상, Python 3.12
@@ -891,7 +891,7 @@ StemFlow가 이미 찾아보는 위치에 에셋이 있다면 해당 줄은 비�
 | `STEMFLOW_MDXC_OVERLAP` | `8` | 분리기 청크 오버랩 |
 | `STEMFLOW_USE_AUTOCAST` | `true` | 혼합 정밀도 추론 |
 | `STEMFLOW_ALLOWED_ORIGINS` | localhost 주소들 | CORS 허용 목록 |
-| `STEMFLOW_MODEL_DIR` | `C:\tmp\audio-separator-models` | 절대 경로 모델 디렉터리 |
+| `STEMFLOW_MODEL_DIR` | `<project>/models` | 모델 디렉터리 |
 | `STEMFLOW_OFFLINE` | `true` | 분리기의 외부 요청 차단 |
 | `STEMFLOW_SEPARATOR_EXE` | v4 환경 경로 | `audio-separator` 실행 파일 |
 | `STEMFLOW_FFMPEG_EXE` | v4 환경 경로 | FFmpeg 실행 파일 |
@@ -921,7 +921,7 @@ GPU 없이 호스팅한 빌드도 데모로는 그대로 동작합니다.
 타임아웃에 걸리는 대신 밀리초 단위로 명확한 로컬 오류가 납니다.
 
 ```text
-Missing 1 model asset(s) in C:\tmp\audio-separator-models: BS-Roformer-SW.yaml.
+Missing 1 model asset(s) in C:\path\to\StemFlow\models: BS-Roformer-SW.yaml.
 Separation needs these locally; set STEMFLOW_MODEL_DIR if they live elsewhere.
 ```
 
@@ -939,7 +939,7 @@ Separation needs these locally; set STEMFLOW_MODEL_DIR if they live elsewhere.
 ### 필요한 로컬 에셋
 
 ```text
-C:\tmp\audio-separator-models\
+StemFlow/models/
 ├── model_bs_roformer_ep_317_sdr_12.9755.ckpt   # 639 MB
 ├── model_bs_roformer_ep_317_sdr_12.9755.yaml   # 추론 파라미터
 ├── BS-Roformer-SW.ckpt                         # 699 MB
@@ -969,7 +969,7 @@ C:\tmp\audio-separator-models\
 
 ```powershell
 $sep = "C:\path\to\.sepenv\Scripts\audio-separator.exe"
-$dir = "C:\tmp\audio-separator-models"
+$dir = "$PWD\models"
 # audio-separator가 시작 시 ffmpeg를 찾으므로 PATH에 있어야 합니다.
 $env:PATH = "C:\path\to\ffmpeg\bin;$env:PATH"
 & $sep --download_model_only --model_filename model_bs_roformer_ep_317_sdr_12.9755.ckpt --model_file_dir $dir

@@ -227,9 +227,11 @@ class ResolutionOrderTests(unittest.TestCase):
             )
 
     def test_a_broken_override_is_an_explicit_error(self) -> None:
-        os.environ["STEMFLOW_SEPARATOR_EXE"] = r"C:\nope\missing.exe"
-        with self.assertRaises(FileNotFoundError):
-            separate_v4.audio_separator_executable()
+        with tempfile.TemporaryDirectory() as temporary:
+            absent = Path(temporary) / "absent.exe"
+            os.environ["STEMFLOW_SEPARATOR_EXE"] = str(absent)
+            with self.assertRaises(FileNotFoundError):
+                separate_v4.audio_separator_executable()
 
     def test_bundled_beats_path(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

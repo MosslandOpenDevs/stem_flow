@@ -58,15 +58,13 @@ $ffmpeg = Resolve-Tool "STEMFLOW_FFMPEG_EXE" @(
 $modelDir = Get-Setting "STEMFLOW_MODEL_DIR"
 $modelSource = "configured"
 if ([string]::IsNullOrWhiteSpace($modelDir)) {
+  # Same candidates as model_directory(), all derived from the project root.
   $modelSource = "bundled"
   $modelDir = Join-Path $project "models"
   if (-not (Test-Path -LiteralPath (Join-Path $modelDir "download_checks.json"))) {
     $vendored = Join-Path $project "vendor\models"
     if (Test-Path -LiteralPath (Join-Path $vendored "download_checks.json")) {
       $modelDir = $vendored
-    } elseif (-not (Test-Path -LiteralPath $modelDir)) {
-      $modelDir = "C:\tmp\audio-separator-models"
-      $modelSource = "tool default"
     }
   }
 }
