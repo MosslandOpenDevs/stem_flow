@@ -1,0 +1,10 @@
+# Normalize to LF in the repository so contributors on other platforms get
+# consistent diffs; PowerShell scripts stay CRLF on checkout for Windows.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+
+*.png binary
+*.svg text eol=lf
+*.mp3 binary
+*.wav binary
+*.ckpt binary

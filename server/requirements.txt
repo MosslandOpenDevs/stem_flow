@@ -1,0 +1,9 @@
+fastapi==0.116.1
+httpx==0.28.1
+numpy==2.4.6
+# Declared explicitly: config reads .env, so this must not rely on arriving as a
+# transitive dependency of uvicorn[standard].
+python-dotenv==1.2.2
+python-multipart==0.0.20
+soundfile==0.14.0
+uvicorn[standard]==0.35.0
