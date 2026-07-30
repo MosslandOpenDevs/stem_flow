@@ -1,29 +1,6 @@
 $ErrorActionPreference = "Stop"
-$project = Split-Path -Parent $PSScriptRoot
-
-# Read .env the same way server/config.py does, so this script never reports a
-# resolution that differs from what actually runs. Real environment variables
-# still win, matching load_dotenv(override=False).
-$dotenv = @{}
-$envPath = Join-Path $project ".env"
-if (Test-Path -LiteralPath $envPath) {
-  foreach ($line in Get-Content -LiteralPath $envPath) {
-    $trimmed = $line.Trim()
-    if ($trimmed -eq "" -or $trimmed.StartsWith("#")) { continue }
-    $split = $trimmed.IndexOf("=")
-    if ($split -lt 1) { continue }
-    $key = $trimmed.Substring(0, $split).Trim()
-    $value = $trimmed.Substring($split + 1).Trim().Trim('"').Trim("'")
-    if ($value -ne "") { $dotenv[$key] = $value }
-  }
-}
-
-function Get-Setting($name) {
-  $value = [Environment]::GetEnvironmentVariable($name)
-  if (-not [string]::IsNullOrWhiteSpace($value)) { return $value }
-  if ($dotenv.ContainsKey($name)) { return $dotenv[$name] }
-  return $null
-}
+. (Join-Path $PSScriptRoot "common.ps1")
+$project = $StemFlowProject
 
 # Mirrors resolve_executable() / model_directory() in worker/separate_v4.py:
 # env var, then anything vendored inside the project, then PATH. Keep in step.
