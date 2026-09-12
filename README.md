@@ -2,17 +2,21 @@
 
 # 🎛️ StemFlow
 
+<!-- opendevs-badges:start -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-64748b?style=flat)](LICENSE)
+<!-- opendevs-badges:end -->
+
 **Local-GPU stem separation and mixing studio.**
 
 Drop in a track, get six sample-aligned stems, mix them in the browser, and export lossless.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.116-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://python.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![CUDA](https://img.shields.io/badge/CUDA-BS--Roformer_v4-76B900?logo=nvidia&logoColor=white)](#separation-pipeline)
-[![Requires NVIDIA GPU](https://img.shields.io/badge/requires-NVIDIA_GPU_%2B_CUDA-76B900?logo=nvidia&logoColor=white)](#hardware)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white&style=flat)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black&style=flat)](https://react.dev)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.116-009688?logo=fastapi&logoColor=white&style=flat)](https://fastapi.tiangolo.com)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white&style=flat)](https://python.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white&style=flat)](https://typescriptlang.org)
+[![CUDA](https://img.shields.io/badge/CUDA-BS--Roformer_v4-76B900?logo=nvidia&logoColor=white&style=flat)](#separation-pipeline)
+[![Requires NVIDIA GPU](https://img.shields.io/badge/requires-NVIDIA_GPU_%2B_CUDA-76B900?logo=nvidia&logoColor=white&style=flat)](#hardware)
 
 **English** · [한국어](#korean)
 
